@@ -3,6 +3,7 @@ package com.example.securitydemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -45,6 +46,7 @@ public class SecurityConfig {
     }
 
     @Bean
+    @DependsOn("dataSourceScriptDatabaseInitializer")
     public UserDetailsService userDetailsService(){
         UserDetails user1 = User.withUsername("user1")
                 .password(passwordEncoder().encode("password1")).roles("USER").build();
